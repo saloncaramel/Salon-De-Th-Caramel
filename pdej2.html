@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Animé</title>
+  <style>
+    /* Style général */
+    body {
+background-color: black !important;
+  font-family: 'Arial', sans-serif;
+  background: url('c (2).jpg')  center center fixed;
+  background-size: contain; /* L'image va couvrir toute la page sans déformation */
+  background-attachment: fixed;
+   background-position: center center;/* Centrer l'image */
+  color: #f5deb3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  overflow-x: hidden; /* Empêcher le défilement horizontal */
+}
+
+html, body {
+  overflow-x: hidden; /* Empêche le défilement horizontal sur la page */
+}
+html, body {
+    overflow-x: hidden;
+}
+
+    nav {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      padding: 20px 0;
+      margin: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.3s ease-in-out, top 0.3s ease-in-out;
+      box-sizing: border-box;
+      border: none;
+    }
+
+    .logo {
+      width: 90px;
+      height: auto;
+      margin-left: 60px;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 25px;
+    }
+
+    nav ul li a {
+      color: #f5deb3;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 5px 0;
+      display: inline-block;
+      position: relative;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      font-family: 'Times New Roman', sans-serif;
+    }
+
+    nav ul li a::before,
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      background-color: #f5deb3;
+      transition: all 0.5s ease;
+    }
+
+    nav ul li a::before {
+      bottom: -3px;
+      left: 0;
+    }
+
+    nav ul li a::after {
+      bottom: -7px;
+      left: 0;
+    }
+
+    nav ul li a:hover::before,
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+
+        nav.hidden {
+            top: -100px;
+            opacity: 0;
+            transition: top 0.3s, opacity 0.3s ease-in-out;
+        }
+
+        .logo.hidden {
+            opacity: 0;
+        }
+
+    
+/* Icône hamburger */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    color: #f5deb3;
+    cursor: pointer;
+    margin-right: 40px;
+ margin-bottom: 10px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+ padding: 0px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        text-align: center;
+        background-color: black;
+        padding-bottom: 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+}
+    .menu-container {
+      width: 80%; /* Utiliser une largeur relative pour plus de réactivité */
+      max-width: 500px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 90px;
+      color: #f5deb3;
+    }
+
+    .menu-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      margin-bottom: 15px;
+      background-color: black;
+      border: 2px solid #f5deb3;
+      border-radius: 12px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      background-color: black;
+    }
+
+    .menu-item .info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-right: 15px;
+      text-align: left;
+    }
+
+    .menu-item .name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .menu-item .description {
+      font-size: 0.95rem;
+      color: #f5deb3;
+      margin-top: 10px;
+    }
+
+    .menu-item .price {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: white;
+      white-space: nowrap;
+      margin-left: 20px;
+      text-align: right;
+    }
+
+    .lavazza-container, .chocolat-chaud-container, .thes-container {
+      margin-top: 0px;
+    }
+
+    .menu-container h1 {
+      text-transform: uppercase;
+      border: 3px solid  #f5deb3;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      background-color: black;
+    }
+
+    /* Media Queries pour les écrans plus petits */
+    @media only screen and (max-width: 768px) {
+      body {
+        background-size: cover;
+      }
+
+      .menu-container {
+        width: 90%; /* S'adapte bien aux écrans plus petits */
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      nav ul li a {
+        font-size: 18px;
+      }
+
+      .menu-item {
+        padding: 15px;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      nav ul li a {
+        font-size: 16px;
+      }
+
+      .menu-item {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+
+<nav>
+    <img src="caramel_transparent.png" alt="Logo" class="logo">
+
+    <!-- Icône hamburger visible uniquement en mobile -->
+    <div class="menu-toggle" id="menuToggle">
+        &#9776;
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="acc.html">Accueil</a></li>
+        <li><a href="prop.html">À propos</a></li>
+        <li><a href="gallery.html">Galerie</a></li>
+        <li><a href="m.html">Menu</a></li>
+        <li><a href="resrv.html">Réservation</a></li>
+    </ul>
+</nav>
+
+  <div class="menu-container">
+    <h1>Petit déjeuner </h1>
+
+    <div class="menu-item" id="item1">
+<div class="info">
+
+      <div class="name">Classic </div>
+<div class="description">Café au choix, pain au chocolat, jus au choix (orange / citron / fraise) eau minérale 0,5 L.</div>
+
+      </div>
+      <div class="price">7.5 DT</div>
+    </div>
+
+   
+ 
+    <div class="menu-item" id="item2">
+<div class="info">
+
+      <div class="name">Basic </div>
+<div class="description">1 Café au choix, jus au choix (orange / citron / fraises) ,eau minérale 0,5 L, Viennoiserie (croissant nature ou pain au chocolat), Omelette, 2 tranches de cake, yaourt, toast avec des tartines (beurre, confiture, chocolat) , 1 mini crêpe, 1 mini salade de fruits</div>
+
+      </div>
+      <div class="price">15 DT</div>
+    </div>
+    <div class="menu-item" id="item3">
+<div class="info">
+
+      <div class="name">Petit dej Healthy</div>
+<div class="description">1 Café au choix, jus au choix (orange/banane) charcuterie ,Gouta, miel, omelette ,granola, eau minérale 0,5 L ,pain complet.</div>
+
+      </div>
+      <div class="price">17 DT</div>
+    </div>
+
+    <div class="menu-item" id="item4">
+<div class="info">
+
+      <div class="name">Duo </div>
+<div class="description">2 Cafés aux choix, 2 jus aux choix (orange / citron / fraise), 2 eaux minéraux 0,5L, charcuterie, viennoiseries ( 2 croissants nature ou 2 pains au chocolat),Omelette, 4 tranches de cake, 2 yaourts, toasts et des tartines ( beurre, confiture, chocolat)
+2 mini crêpes aux choix, 2 mini salades de fruits, 2 gâteaux soirée.</div>
+
+      </div>
+      <div class="price">35 DT</div>
+    </div>
+
+
+
+
+    <div class="menu-item" id="item5">
+<div class="info">
+
+      <div class="name">Brunch  </div>
+<div class="description">2 cafés aux choix, 2 gâteaux soirée, 2 jus aux choix ( orange / citron / fraise).
+1L eau minérale, charcuterie + viennoiseries ( 2 croissants nature ou 2 pains au chocolat ),omelette, gouta, 4 tranches de cake, 2 mini crêpes aux choix, 2 yaourts,2 mini salades de fruits, 2 croissants salés, petits pains, des tartines ( beurre, confiture, chocolat, miel), 2 pièces de cordon bleu nuggets, ojja, frites.</div>      </div>
+      <div class="price">58 DT</div>
+    </div>
+
+
+      
+    </div>
+    
+
+ 
+
+  <script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const nav = document.querySelector("nav");
+  const logo = document.querySelector(".logo");
+
+let prevScrollPos = window.pageYOffset;
+
+// Cacher/afficher le nav au scroll
+window.onscroll = function () {
+  let currentScrollPos = window.pageYOffset;
+
+  if (!navLinks.classList.contains("active")) {
+    // Ne jamais cacher le nav quand on est tout en haut
+    if (currentScrollPos <= 0 || prevScrollPos > currentScrollPos) {
+      nav.classList.remove("hidden");
+      logo.classList.remove("hidden");
+    } else {
+      nav.classList.add("hidden");
+      logo.classList.add("hidden");
+    }
+  }
+
+  prevScrollPos = currentScrollPos;
+};
+  
+
+  // Tout au chargement
+  window.onload = function () {
+    // Toujours montrer le nav au chargement
+    nav.classList.remove("hidden");
+    logo.classList.remove("hidden");
+
+    // Lancer l'animation des items
+    const menuItems = document.querySelectorAll(".menu-item");
+    menuItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add("visible");
+      }, index * 300);
+    });
+
+    // Initialiser prevScrollPos après chargement (juste pour être safe)
+    prevScrollPos = window.pageYOffset;
+  };
+
+  // Menu hamburger toggle
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu du Salon de Thé Caramel</title>
+    <style>
+    
+   html, body {
+  overflow-x: hidden; /* Empêche le défilement horizontal sur la page */
+
+}
+
+
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      padding: 20px 0;
+      margin: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.3s ease-in-out, top 0.3s ease-in-out;
+      box-sizing: border-box;
+      border: none;
+    }
+
+    .logo {
+      width: 90px;
+      height: auto;
+      margin-left: 60px;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 25px;
+    }
+
+    nav ul li a {
+      color: #f5deb3;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 5px 0;
+      display: inline-block;
+      position: relative;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      font-family: 'Times New Roman', sans-serif;
+    }
+
+    nav ul li a::before,
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      background-color: #f5deb3;
+      transition: all 0.5s ease;
+    }
+
+    nav ul li a::before {
+      bottom: -3px;
+      left: 0;
+    }
+
+    nav ul li a::after {
+      bottom: -7px;
+      left: 0;
+    }
+
+    nav ul li a:hover::before,
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+
+        nav.hidden {
+            top: -100px;
+            opacity: 0;
+            transition: top 0.3s, opacity 0.3s ease-in-out;
+        }
+
+        .logo.hidden {
+            opacity: 0;
+        }
+
+    
+/* Icône hamburger */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    color: #f5deb3;
+    cursor: pointer;
+    margin-right: 40px;
+ margin-bottom: 10px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        text-align: center;
+        background-color: black;
+        padding-bottom: 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+}
+
+      
+
+    @media only screen and (max-width: 480px) {
+      nav ul li a {
+        font-size: 16px;
+      }
+
+    }
+
+
+
+
+
+
+
+
+.intro {
+            font-family: 'Arial', sans-serif;
+            background-image: url('b.jpeg'); /* Remplacez par le chemin de votre image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding-top: 100px;
+            margin-top: 0; /* Aucun décalage pour ne pas interférer avec la barre de navigation */
+        }
+
+        .intro .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Noir semi-transparent */
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-top: 60px;
+            z-index: 2;
+            color: #f5deb3;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            z-index: 2;
+        }
+
+        .menu {
+            text-align: center;
+            margin-top: 50px; /* Uniformisation de l'espacement */
+            z-index: 2;
+            position: relative;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            overflow: hidden;
+            height: 350px;
+
+        }
+
+        /* Deuxième page avec fond noir */
+        #Voir-le-menu {
+            padding: 50px;
+            background-color: #000;  /* Fond noir */
+            text-align: center;
+            min-height: 100vh;  /* Prendre toute la hauteur */
+            font-weight: bold;
+            color: #f5deb3;
+            margin-bottom: 0; /* Supprimer toute marge inférieure */
+        }
+
+        #Voir-le-menu h2 {
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+
+        .menu-items-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .menu-item {
+            margin: 20px;
+            width: 200px;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(1.1);
+        }
+
+        .menu-item .text {
+            text-align: center;
+            margin-top: 40px;
+            z-index: 1;
+            position: relative;
+            color: #000000;
+
+        }
+
+        .btn {
+            padding: 10px 10px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 22px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 230px;
+            z-index: 1;
+            position: relative;
+
+            font-family: 'Times New Roman',sans serif;
+        }
+
+        .btn:hover {
+            background-color: #444;
+        }
+
+   
+
+        #home-btn {
+            bottom: 250px;
+        }
+
+        /* Style pour l'emoji pouce */
+        .thumb {
+            font-size: 40px;
+            margin-left: 5px;
+             vertical-align: -3px; /* Décalage vers le haut */
+        }
+/* Style de la flèche */
+#scrollToTop {
+    position: fixed;
+    bottom: 60px; /* Positionné pour apparaître après la deuxième ligne */
+    right: 20px;
+    background-color: transparent; /* Rendre l'intérieur transparent */
+    border: 2px solid #f5deb3; /* Bordure beige autour de la flèche */
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 24px;
+    color: #f5deb3; /* Couleur de la flèche */
+    cursor: pointer;
+    display: none;
+    z-index: 9999;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease, bottom 0.3s ease-in-out, transform 0.3s ease;
+}
+
+#scrollToTop:hover {
+    background-color: transparent; /* Ne pas changer la couleur au survol */
+    border-color: #f5deb3; /* Maintient la bordure beige au survol */
+}
+
+/* Animation pour la flèche lorsque l'utilisateur clique */
+#scrollToTop.shrink {
+    transform: scale(0.7); /* Réduit la taille de la flèche */
+}
+
+/* Animation de fade-in pour l'apparition de la flèche */
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Effet de cercle autour de la flèche au clic */
+#scrollToTop.clicked {
+    /* Pas de bordure jaune autour de la flèche */
+    padding: 12px; /* Réduit légèrement le cercle */
+    background-color: transparent;
+    animation: none; /* Supprime les autres animations lors du clic */
+}
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+
+
+
+
+  .footer {
+    background-color: black;  
+    color: white;  /* Texte en noir */
+    font-size: 1.5em;
+    text-align: center;
+    padding: 50px; /* Moins de padding pour que ça soit plus adapté aux mobiles */
+    position: relative;
+ 
+}
+
+.footer-text {
+    font-size: 1.2em;  /* Un peu plus petit pour les textes dans le footer */
+    padding: 20px;
+font-color: white;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-weight: lighter;
+}
+
+/* Enlever la couleur bleue du numéro de téléphone */
+.footer a {
+    color: white;  /* Assurer que le lien est noir et pas bleu */
+    text-decoration: none;  /* Enlever le soulignement des liens */
+}
+
+.footer a:hover {
+    color: #555;  /* Ajout d'une couleur au survol */
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 600px) {
+    .footer {
+        font-size: 1.2em;  /* Texte plus petit pour les petits écrans */
+        padding: 20px;  /* Moins de padding pour éviter un grand espace */
+    }
+
+    .footer-text {
+        font-size: 1em;  /* Encore plus petit pour s’adapter aux petits écrans */
+    }
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden; /* Évite le décalage horizontal */
+        font-weight: normal;
+    }
+
+ }
+
+
+
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2em; /* au lieu de 3em */
+    }
+
+    .subtitle {
+        font-size: 1.5em; /* au lieu de 1.5em */
+        padding: 0 10px; /* Ajout pour éviter que le texte touche les bords */
+    }
+
+
+
+    .thumb {
+        font-size: 30px; /* Emoji plus petit */
+    }
+}
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+ body, html {
+   background-color : black;
+    overflow-x: hidden; /* Cela évite le décalage horizontal */
+}
+
+
+
+ @media (max-width: 768px) {
+    .logo {
+        width: 70px; /* Réduit la largeur du logo pour les petits écrans */
+        margin-left: 20px; /* Ajuste l'espacement si nécessaire */
+    }
+
+ .menu-toggle {
+        display: block; 
+        font-size: 30px; 
+        margin-right: 20px; 
+       }
+    nav {
+position : relative;
+        flex-wrap: wrap;
+        justify-content: space-between;
+background-color: black;
+padding: 5px 0;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Ajuste l'espacement des éléments de la navigation */
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        text-align: center;
+        background-color: black;
+        padding-bottom: 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    nav ul li a {
+        font-size: 18px; /* Réduit la taille de la police des liens de navigation */
+    }
+}
+
+ </style>
+</head>
+<body>
+
+<nav>
+    <img src="caramel_transparent.png" alt="Logo" class="logo">
+
+    <!-- Icône hamburger visible uniquement en mobile -->
+    <div class="menu-toggle" id="menuToggle">
+        &#9776;
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="acc.html">Accueil</a></li>
+        <li><a href="prop.html">À propos</a></li>
+        <li><a href="gallery.html">Galerie</a></li>
+        <li><a href="m.html">Menu</a></li>
+        <li><a href="resrv.html">Réservation</a></li>
+    </ul>
+</nav>
+
+<!-- Première Page -->
+<section class="intro">
+    <div class="overlay"></div>
+    <div class="title">Menu du Salon de Thé Caramel</div>
+    <div class="subtitle">Le Menu du Salon de Thé Caramel associe des inspirations authentiques et créatives,<br> offrant une sélection de mets savoureux et élégants. <br><br>Chaque choix est conçu pour satisfaire une multitude de palais, <br>dans un cadre à la fois convivial et sophistiqué.</div>
+    <div class="menu">
+        <a href="#Voir-le-menu" id="home-btn" class="btn">Voir le menu</a>
+    </div>
+</section>
+
+<!-- Deuxième Page -->
+<section id="Voir-le-menu">
+    <h2>Nous espérons que notre menu saura vous séduire    <span class="thumb">👍</span></h2>
+    <div class="menu-items-container">
+        <div class="menu-item" style="background-image: url('dej.jpeg');">
+            <div class="text">
+                <a href="pdej2.html" class="btn">Petit Déjeuner</a>
+            </div>
+        </div>
+
+        <div class="menu-item" style="background-image: url('chaud.png');">
+            <div class="text">
+                <a href="chaud.html" class="btn">Boissons Chaudes</a>
+            </div>
+        </div>
+
+        <div class="menu-item" style="background-image: url('jus.jpeg');">
+            <div class="text">
+                <a href="froid1.html" class="btn">Boissons Froides</a>
+            </div>
+        </div>
+
+
+
+
+
+
+
+ <div class="menu-item" style="background-image: url('wat.jpg');">
+            <div class="text">
+                <a href="boisson.html" class="btn">Boissons</a>
+            </div>
+        </div>
+        <div class="menu-item" style="background-image: url('d.jpeg');">
+            <div class="text">
+                <a href="delice1.html" class="btn">Délices Sucrés</a>
+            </div>
+        </div>
+
+        <div class="menu-item" style="background-image: url('glace1.jpeg');">
+            <div class="text">
+                <a href="dessert.html" class="btn">Dessert</a>
+            </div>
+        </div>
+
+        <div class="menu-item" style="background-image: url('cre.jpg');">
+            <div class="text">
+                <a href="foo.html" class="btn">Food</a>
+            </div>
+        </div>
+
+        <div class="menu-item" style="background-image: url('chicha.png');">
+            <div class="text">
+                <a href="chicha3.html" class="btn">Chicha</a>
+            </div>
+        </div>
+
+  
+
+</section>
+
+<!-- Footer -->
+<section class="footer">
+    <p class="footer-text">Salon De Thé Caramel</p>
+    <p>+216 93 342 832, contact@salondethecaramel.com</p>
+    <p>Ouvert : 06h00 – 00h00</p>
+</section>
+<!-- Flèche vers le haut -->
+<button id="scrollToTop" class="fade-in">&#8593;</button>
+
+
+<script>
+   
+
+
+
+
+
+
+
+
+
+// Récupère le bouton de la flèche
+var scrollToTopButton = document.getElementById("scrollToTop");
+
+// Lorsque l'utilisateur fait défiler la page, on vérifie la position du défilement
+window.onscroll = function () {
+    if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+        scrollToTopButton.style.display = "block"; // Afficher la flèche
+    } else {
+        scrollToTopButton.style.display = "none"; // Cacher la flèche
+    }
+};
+
+// Lorsque l'utilisateur clique sur la flèche, remonter en haut de la page
+scrollToTopButton.onclick = function () {
+    scrollToTopButton.classList.add('shrink'); // Ajoute la classe pour rétrécir la flèche
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Optionnel : Vous pouvez ajouter un délai avant de supprimer la classe pour
+    // permettre à l'animation de se jouer avant de revenir à sa taille d'origine
+    setTimeout(function () {
+        scrollToTopButton.classList.remove('shrink');
+    }, 500); // Durée de l'animation
+};
+
+
+
+
+
+
+
+
+
+
+
+ const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const nav = document.querySelector("nav");
+  const logo = document.querySelector(".logo");
+
+let prevScrollPos = window.pageYOffset;
+
+// Cacher/afficher le nav au scroll
+window.onscroll = function () {
+  let currentScrollPos = window.pageYOffset;
+
+  if (!navLinks.classList.contains("active")) {
+    // Ne jamais cacher le nav quand on est tout en haut
+    if (currentScrollPos <= 0 || prevScrollPos > currentScrollPos) {
+      nav.classList.remove("hidden");
+      logo.classList.remove("hidden");
+    } else {
+      nav.classList.add("hidden");
+      logo.classList.add("hidden");
+    }
+  }
+
+  prevScrollPos = currentScrollPos;
+};
+  
+
+  // Tout au chargement
+  window.onload = function () {
+    // Toujours montrer le nav au chargement
+    nav.classList.remove("hidden");
+    logo.classList.remove("hidden");
+
+    // Lancer l'animation des items
+    const menuItems = document.querySelectorAll(".menu-item");
+    menuItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add("visible");
+      }, index * 300);
+    });
+
+    // Initialiser prevScrollPos après chargement (juste pour être safe)
+    prevScrollPos = window.pageYOffset;
+  };
+
+  // Menu hamburger toggle
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+</body>
+</html>
+
+
+

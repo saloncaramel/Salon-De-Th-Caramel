@@ -1,0 +1,1023 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Animé</title>
+  <style>
+    /* Style général */
+    body {
+  font-family: 'Arial', sans-serif;
+  background: url('13.jpg') no-repeat center center fixed;
+  background-size: cover; /* L'image va couvrir toute la page sans déformation */
+  background-attachment: fixed;
+  background-position: center center; /* Centrer l'image */
+  color: #f5deb3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  overflow-x: hidden; /* Empêcher le défilement horizontal */
+}
+
+html, body {
+  overflow-x: hidden; /* Empêche le défilement horizontal sur la page */
+}
+
+    nav {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      padding: 20px 0;
+      margin: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.3s ease-in-out, top 0.3s ease-in-out;
+      box-sizing: border-box;
+      border: none;
+    }
+
+    .logo {
+      width: 90px;
+      height: auto;
+      margin-left: 60px;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 25px;
+    }
+
+    nav ul li a {
+      color: #f5deb3;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 5px 0;
+      display: inline-block;
+      position: relative;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      font-family: 'Times New Roman', sans-serif;
+    }
+
+    nav ul li a::before,
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      background-color: #f5deb3;
+      transition: all 0.5s ease;
+    }
+
+    nav ul li a::before {
+      bottom: -3px;
+      left: 0;
+    }
+
+    nav ul li a::after {
+      bottom: -7px;
+      left: 0;
+    }
+
+    nav ul li a:hover::before,
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+
+        nav.hidden {
+            top: -100px;
+            opacity: 0;
+            transition: top 0.3s, opacity 0.3s ease-in-out;
+        }
+
+        .logo.hidden {
+            opacity: 0;
+        }
+
+    
+/* Icône hamburger */
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    color: #f5deb3;
+    cursor: pointer;
+    margin-right: 40px;
+ margin-bottom: 10px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        text-align: center;
+        background-color: black;
+        padding-bottom: 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+}
+    .menu-container {
+      width: 80%; /* Utiliser une largeur relative pour plus de réactivité */
+      max-width: 500px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 90px;
+      color: #f5deb3;
+    }
+
+    .menu-item {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      margin-bottom: 15px;
+      background-color: black;
+      border: 2px solid #f5deb3;
+      border-radius: 12px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      background-color: black;
+    }
+
+    .menu-item .info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      margin-right: 15px;
+      text-align: left;
+    }
+
+    .menu-item .name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      white-space: nowrap;
+    }
+
+    .menu-item .description {
+      font-size: 0.95rem;
+      color: #f5deb3;
+      margin-top: 10px;
+    }
+
+    .menu-item .price {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: white;
+      white-space: nowrap;
+      margin-left: 20px;
+      text-align: right;
+    }
+
+    .lavazza-container, .chocolat-chaud-container, .thes-container {
+      margin-top: 0px;
+    }
+
+    .menu-container h1 {
+      text-transform: uppercase;
+      border: 3px solid  #f5deb3;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      background-color: black;
+    }
+
+    /* Media Queries pour les écrans plus petits */
+    @media only screen and (max-width: 768px) {
+      body {
+        background-size: cover;
+      }
+
+      .menu-container {
+        width: 90%; /* S'adapte bien aux écrans plus petits */
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      nav ul li a {
+        font-size: 18px;
+      }
+
+      .menu-item {
+        padding: 15px;
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      nav ul li a {
+        font-size: 16px;
+      }
+
+      .menu-item {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
+
+
+
+
+
+
+
+
+
+ /* Style de la flèche */
+        #scrollToTop {
+            position: fixed;
+            bottom: 60px; /* Positionné pour apparaître après la deuxième ligne */
+            right: 20px;
+            background-color: transparent; /* Rendre l'intérieur transparent */
+            border: 2px solid #f5deb3; /* Bordure beige autour de la flèche */
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            color: #f5deb3; /* Couleur de la flèche */
+            cursor: pointer;
+            display: none;
+            z-index: 9999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease, bottom 0.3s ease-in-out, transform 0.3s ease;
+        }
+
+        #scrollToTop:hover {
+            background-color: transparent; /* Ne pas changer la couleur au survol */
+            border-color: #f5deb3; /* Maintient la bordure beige au survol */
+        }
+
+        /* Animation pour la flèche lorsque l'utilisateur clique */
+        #scrollToTop.shrink {
+            transform: scale(0.7); /* Réduit la taille de la flèche */
+        }
+
+        /* Animation de fade-in pour l'apparition de la flèche */
+        .fade-in {
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Effet de cercle autour de la flèche au clic */
+        #scrollToTop.clicked {
+            /* Pas de bordure jaune autour de la flèche */
+            padding: 12px; /* Réduit légèrement le cercle */
+            background-color: transparent;
+            animation: none; /* Supprime les autres animations lors du clic */
+        }
+
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+<nav>
+    <img src="caramel_transparent.png" alt="Logo" class="logo">
+
+    <!-- Icône hamburger visible uniquement en mobile -->
+    <div class="menu-toggle" id="menuToggle">
+        &#9776;
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="acc.html">Accueil</a></li>
+        <li><a href="prop.html">À propos</a></li>
+        <li><a href="gallery.html">Galerie</a></li>
+        <li><a href="m.html">Menu</a></li>
+        <li><a href="resrv.html">Réservation</a></li>
+    </ul>
+</nav>
+
+
+<!-- 🔽 BOUTONS NAVIGATION (AJOUT ICI) -->
+<div id="menu-nav" style="margin-top: 120px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+    <!-- Les boutons seront générés automatiquement par JavaScript -->
+</div>
+
+  <div class="menu-container">
+    <h1>Crêpes salées</h1>
+    <div class="menu-item" id="item1">
+      <div class="name">Fromage</div>
+      <div class="price">4.5 DT</div>
+    </div>
+    <div class="menu-item" id="item2">
+      <div class="name">Jambon Fromage</div>
+      <div class="price">5.5 DT</div>
+    </div>
+    <div class="menu-item" id="item3">
+      <div class="name">Thon Fromage</div>
+      <div class="price">6 DT</div>
+    </div>
+    <div class="menu-item" id="item4">
+
+      <div class="name">Champignons Fromage </div>
+
+      <div class="price">7 DT</div>
+    </div>
+<div class="menu-item" id="item5">
+<div class="info">
+
+      <div class="name">Tunisienne</div>
+<div class="description">Thon + Oeuf + Fromage </div>
+
+      </div>
+      <div class="price">6.5 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+<div class="info">
+      <div class="name">Crêpe Pizza</div>
+<div class="description"> Thon + Sauce tomate + Fromage + Olive</div>
+
+      </div>
+       <div class="price">6.5 DT</div>
+    </div>
+  <div class="menu-item" id="item4">
+
+      <div class="name">Escalopes </div>
+
+      <div class="price">7 DT</div>
+    </div>
+  <div class="menu-item" id="item4">
+
+      <div class="name">Cordon Bleu </div>
+
+      <div class="price">9 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+<div class="info">
+      <div class="name">Spéciale</div>
+<div class="description"> Thon + Jambon  + Slice + Oeuf + Escalopes</div>
+</div>
+ <div class="price">10 DT</div>
+      </div>
+<div class="menu-item" id="item6">
+<div class="info">
+      <div class="name">Crêpe Poulet</div>
+<div class="description">Poulet + Champignons + Sauce Blanche + Fromage</div>
+</div>
+ <div class="price">12 DT</div>
+      </div>
+  </div>
+
+  <div class="menu-container lavazza-container">
+<h1>Omelettes   <span style="font-size: 0.5em; color: white;"> ( Avec Toast )</span></h1>
+    <div class="menu-item" id="item1">
+      <div class="name">Fromage</div>
+      <div class="price">3.5 DT</div>
+    </div>
+    <div class="menu-item" id="item2">
+      <div class="name">Thon - Fromage</div>
+      <div class="price">4.5 DT</div>
+    </div>
+    <div class="menu-item" id="item3">
+      <div class="name">Jambon - Fromage</div>
+      <div class="price">4.5 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+<div class="info">
+      <div class="name">Spéciale</div>
+<div class="description">Thon + Fromage + Jambon + Slice</div>
+</div>
+ <div class="price">6 DT</div>
+      </div>
+    </div>
+
+
+  <div class="menu-container chocolat-chaud-container">
+    <h1>Crêpes Sucrées</h1>
+    <div class="menu-item" id="item1">
+      <div class="name">Chocolat</div>
+      <div class="price">6 DT</div>
+    </div>
+    <div class="menu-item" id="item2">
+      <div class="name">Caramel</div>
+      <div class="price">6 DT</div>
+    </div>
+    <div class="menu-item" id="item3">
+      <div class="name">Miel</div>
+      <div class="price">6 DT</div>
+    </div>
+    <div class="menu-item" id="item4">
+      <div class="name">Chocolat - Banane</div>
+      <div class="price">7 DT</div>
+    </div>
+    <div class="menu-item" id="item5">
+      <div class="name">Morjène</div>
+      <div class="price">7 DT</div>
+    </div>
+    <div class="menu-item" id="item6">
+      <div class="name">Oreo</div>
+      <div class="price">7 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Nutella</div>
+      <div class="price">7 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Spéculoos</div>
+      <div class="price">7 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Kit-Kat</div>
+      <div class="price">7 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Snickers </div>
+      <div class="price">7 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Ferrero</div>
+      <div class="price">8 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Nutella - Banane</div>
+      <div class="price">8 DT</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="info">
+        <div class="name">Glacée Nutella  </div>
+        <div class="description">Nutella + 2 Boules de glace </div>
+</div>
+      <div class="price">8 DT</div>
+   
+      </div>
+
+<div class="menu-item" id="item6">
+      <div class="name">Pistachio</div>
+      <div class="price">9 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Nutella - Fruits secs </div>
+      <div class="price">9 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Chocolat Dubai </div>
+      <div class="price">12 DT</div>
+    </div>
+
+<div class="menu-item" id="item6">
+      <div class="name">Personalisée </div>
+      <div class="price">12 DT</div>
+    </div>
+  </div>
+
+  <div class="menu-container thes-container">
+    <h1>Gaufre</h1>
+    <div class="menu-item" id="item1">
+      <div class="name">Chocolat</div>
+      <div class="price">6 DT</div>
+    </div>
+    <div class="menu-item" id="item2">
+      <div class="name">Caramel</div>
+      <div class="price">6 DT</div>
+    </div>
+    <div class="menu-item" id="item3">
+      <div class="name">Miel</div>
+      <div class="price">6.5 DT</div>
+    </div>
+    <div class="menu-item" id="item4">
+      <div class="name"> Nutella</div>
+      <div class="price">7 DT</div>
+    </div>
+    <div class="menu-item" id="item5">
+      <div class="name">Chocolat - Banane</div>
+      <div class="price">7 DT</div>
+    </div>
+    <div class="menu-item" id="item6">
+      <div class="name">Nutella - Banane</div>
+      <div class="price">8 DT</div>
+    </div>
+  
+    <div class="menu-item" id="item6">
+      <div class="name">Morjène</div>
+      <div class="price">7.5 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Oréo  </div>
+      <div class="price">7.5 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Spéculoos</div>
+      <div class="price">7.5 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Kit-kat </div>
+      <div class="price">7.5 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Snickers</div>
+      <div class="price">7.5 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Ferrero</div>
+      <div class="price">9 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Pistachio</div>
+      <div class="price">9 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+<div class="info">
+      <div class="name">Glacée</div>
+ <div class="description">Nutella + 2 Boules de glace </div>
+ </div>
+      <div class="price">9 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+      <div class="name">Nutella - Fruits secs</div>
+      <div class="price">9 DT</div>
+    </div>
+<div class="menu-item" id="item6">
+<div class="info">
+      <div class="name">Gaufre spécialité de Caramel</div>
+ <div class="description">Nutella + Caramel + Miel + Banane + Fruits secs + Chantilly </div>
+ </div>
+      <div class="price">11 DT</div>
+    </div>
+    </div>
+   
+
+
+
+
+
+
+
+
+<div class="menu-container thes-container">
+    <h1>Pancake</h1>
+
+<div class="menu-item" id="item1">
+  <div class="name"> Chocolat</div>
+  <div class="price">6 DT</div>
+</div>
+<div class="menu-item" id="item2">
+  <div class="name"> Chocolat - Banane</div>
+  <div class="price">7 DT</div>
+</div>
+<div class="menu-item" id="item3">
+  <div class="name"> Nutella</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item4">
+  <div class="name"> Nutella - Banane</div>
+  <div class="price">9.5 DT</div>
+</div>
+<div class="menu-item" id="item5">
+  <div class="name">Morjène</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item6">
+  <div class="name">Pancake Oréo</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item7">
+  <div class="name"> Spéculoos</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item8">
+  <div class="name"> Kit-Kat</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item9">
+  <div class="name"> Snickers</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item10">
+  <div class="name"> Ferrero</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item11">
+  <div class="name"> Pistachio</div>
+  <div class="price">10 DT</div>
+</div>
+
+<div class="menu-item" id="item12">
+<div class="info">
+  <div class="name">Pancake Glacés</div>
+<div class="description">Nutella + 2 Boules de Glace </div>
+
+      </div>
+  <div class="price">10 DT</div>
+</div>
+<div class="menu-item" id="item13">
+  <div class="name"> Nutella - Fruits Secs</div>
+  <div class="price">10 DT</div>
+</div>
+<div class="menu-item" id="item14">
+<div class="info">
+
+  <div class="name">Pancake Spécialité de Caramel</div>
+<div class="description"> Nutella + Caramel + Miel + Banane + Fruits Secs + Chantilly </div>
+</div>
+  <div class="price">12 DT</div>
+</div>
+</div>
+
+
+
+
+
+<div class="menu-container thes-container">
+    <h1>Corn Waffle</h1>
+<!-- Corn waffle -->
+<div class="menu-item" id="item15">
+  <div class="name"> Chocolat</div>
+  <div class="price">6 DT</div>
+</div>
+<div class="menu-item" id="item16">
+  <div class="name"> Caramel</div>
+  <div class="price">6 DT</div>
+</div>
+<div class="menu-item" id="item17">
+  <div class="name"> Miel</div>
+  <div class="price">6.5 DT</div>
+</div>
+<div class="menu-item" id="item18">
+  <div class="name"> Chocolat - Banane</div>
+  <div class="price">7 DT</div>
+</div>
+<div class="menu-item" id="item19">
+
+  <div class="name"> Nutella</div>
+  <div class="price">7.5 DT</div>
+</div>
+<div class="menu-item" id="item20">
+  <div class="name"> Oréo</div>
+  <div class="price">7.5 DT</div>
+</div>
+<div class="menu-item" id="item21">
+  <div class="name"> Spéculoos</div>
+  <div class="price">7.5 DT</div>
+</div>
+<div class="menu-item" id="item22">
+  <div class="name"> Kit-kat</div>
+  <div class="price">7.5 DT</div>
+</div>
+<div class="menu-item" id="item23">
+  <div class="name"> Nutella - Banane</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item24">
+  <div class="name"> Morjène</div>
+  <div class="price">8 DT</div>
+</div>
+<div class="menu-item" id="item25">
+  <div class="name"> Snickers</div>
+  <div class="price">7.5 DT</div>
+</div>
+<div class="menu-item" id="item26">
+  <div class="name"> Ferrero</div>
+  <div class="price">9 DT</div>
+</div>
+<div class="menu-item" id="item27">
+  <div class="name"> Pistachio</div>
+  <div class="price">9 DT</div>
+</div>
+<div class="menu-item" id="item28">
+<div class= "info">
+  <div class="name">Corn waffle glacé</div>
+<div class="description">Nutella + 2 Boules de Glace </div>
+</div>
+
+  <div class="price">9 DT</div>
+</div>
+<div class="menu-item" id="item29">
+  <div class="name"> Nutella - Fruits Secs</div>
+  <div class="price">9 DT</div>
+</div>
+</div>
+
+
+
+<div class="menu-container thes-container">
+    <h1>Bubble Waffle</h1>
+<!-- Bubble waffle -->
+<div class="menu-item" id="item30">
+<div class="info">
+  <div class="name"> Chocolat</div>
+<div class="description">Chocolat + Banane + Crème spécial + Caramel + Miel + Glace chocolat + Fruits secs </div>
+</div>
+  <div class="price">8.5 DT</div>
+</div>
+<div class="menu-item" id="item31">
+<div class="info">
+  <div class="name"> Oréo</div>
+<div class="description">Tartiner Oréo + Crème spécial + Biscuits croquants + Glace chocolat + Glace vanille + Fruits secs </div>
+</div>
+  <div class="price">9 DT</div>
+</div>
+<div class="menu-item" id="item32">
+<div class="info">
+  <div class="name">Nutella</div>
+<div class="description">Nutella + Banane + Crème spécial + Biscuits + Fruits secs + Glace chocolat </div>
+</div>
+  <div class="price">11 DT</div>
+</div>
+<div class="menu-item" id="item33">
+<div class="info">
+  <div class="name"> Ferrero</div>
+<div class="description">Tartiner Ferrero + Crème spécial + Biscuits croquants + Glace chocolat + Glace vanille + Fruits secs </div>
+</div>
+  <div class="price">12 DT</div>
+</div>
+<div class="menu-item" id="item34">
+<div class="info">
+  <div class="name"> Snickers</div>
+<div class="description">Tartiner Snickers + Crème spécial + Biscuits croquants + Glace chocolat + Glace vanille + Fruits secs </div>
+</div>
+  <div class="price">12 DT</div>
+</div>
+</div>
+
+<div class="menu-container thes-container">
+  <h1>Cocktails de Crèmes</h1>
+
+  <div class="menu-item">
+    <div class="name">Cake Dubai</div>
+    <div class="price">15 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail de Crèmes Baklawa</div>
+    <div class="price">15 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail de Crèmes Ferrero</div>
+    <div class="price">15 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail de Crèmes Kinder</div>
+    <div class="price">13 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail de Crèmes Kit-Kat</div>
+    <div class="price">13 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail de Crèmes Lotus</div>
+    <div class="price">13 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail de Crèmes Nutella</div>
+    <div class="price">13 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail des Crèmes Snickers</div>
+    <div class="price">13 DT</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name">Cocktail de Crèmes Oreo</div>
+    <div class="price">10 DT                                                                    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- Flèche vers le haut -->
+<button id="scrollToTop" class="fade-in">&#8593;</button>
+
+
+  <script>
+    // Animation d'apparition des éléments du menu
+    window.onload = function() {
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, index * 300); // Décalage de 300ms entre chaque élément
+      });
+    };
+
+
+
+
+ // Récupère le bouton de la flèche
+    var scrollToTopButton = document.getElementById("scrollToTop");
+
+    // Lorsque l'utilisateur fait défiler la page, on vérifie la position du défilement
+    window.onscroll = function () {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            scrollToTopButton.style.display = "block"; // Afficher la flèche
+        } else {
+            scrollToTopButton.style.display = "none"; // Cacher la flèche
+        }
+    };
+
+    // Lorsque l'utilisateur clique sur la flèche, remonter en haut de la page
+    scrollToTopButton.onclick = function () {
+        scrollToTopButton.classList.add('shrink'); // Ajoute la classe pour rétrécir la flèche
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Optionnel : Vous pouvez ajouter un délai avant de supprimer la classe pour
+        // permettre à l'animation de se jouer avant de revenir à sa taille d'origine
+        setTimeout(function () {
+            scrollToTopButton.classList.remove('shrink');
+        }, 100); // Durée de l'animation
+    };
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuNav = document.getElementById("menu-nav");
+        const headings = document.querySelectorAll(".menu-container h1");
+
+        headings.forEach((heading, index) => {
+            const id = "section-" + index;
+            heading.setAttribute("id", id);
+
+            const btn = document.createElement("button");
+            btn.innerText = heading.innerText.split("(")[0].trim();
+            btn.style.padding = "10px 15px";
+            btn.style.border = "2px solid #f5deb3";
+            btn.style.backgroundColor = "black";
+            btn.style.color = "#f5deb3";
+            btn.style.borderRadius = "20px";
+            btn.style.cursor = "pointer";
+            btn.style.fontFamily = "'Times New Roman', serif";
+            btn.style.transition = "background-color 0.3s, transform 0.2s";
+
+            btn.addEventListener("mouseover", () => {
+                btn.style.backgroundColor = "#333";
+                btn.style.transform = "scale(1.05)";
+            });
+            btn.addEventListener("mouseout", () => {
+                btn.style.backgroundColor = "black";
+                btn.style.transform = "scale(1)";
+            });
+
+            btn.addEventListener("click", () => {
+                document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+            });
+
+            menuNav.appendChild(btn);
+        });
+    });
+</script>
+
+
+<script>
+
+
+ const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const nav = document.querySelector("nav");
+  const logo = document.querySelector(".logo");
+
+let prevScrollPos = window.pageYOffset;
+
+// Cacher/afficher le nav au scroll
+window.onscroll = function () {
+  let currentScrollPos = window.pageYOffset;
+
+  if (!navLinks.classList.contains("active")) {
+    // Ne jamais cacher le nav quand on est tout en haut
+    if (currentScrollPos <= 0 || prevScrollPos > currentScrollPos) {
+      nav.classList.remove("hidden");
+      logo.classList.remove("hidden");
+    } else {
+      nav.classList.add("hidden");
+      logo.classList.add("hidden");
+    }
+  }
+
+  prevScrollPos = currentScrollPos;
+};
+  
+
+  // Tout au chargement
+  window.onload = function () {
+    // Toujours montrer le nav au chargement
+    nav.classList.remove("hidden");
+    logo.classList.remove("hidden");
+
+    // Lancer l'animation des items
+    const menuItems = document.querySelectorAll(".menu-item");
+    menuItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add("visible");
+      }, index * 300);
+    });
+
+    // Initialiser prevScrollPos après chargement (juste pour être safe)
+    prevScrollPos = window.pageYOffset;
+  };
+
+  // Menu hamburger toggle
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
